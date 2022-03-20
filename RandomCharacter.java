@@ -40,4 +40,31 @@ public class RandomCharacter {
             return '\0';
         }
     }
+    
+    public char getRandomPrimeDigitCharacter() {
+    	Random r = new Random();
+    	int lowerBound = 48;
+    	int upperBound = 58;
+    	char retChar;
+    	do {
+    		retChar = (char)(r.nextInt(upperBound - lowerBound) + lowerBound);
+    	} while (!isPrime(retChar - lowerBound));
+    	return retChar;
+    }
+    
+    static boolean isPrime(int n) {
+    	if (n <= 1) {
+    		return false;
+    	} else if (n == 2) {
+    		return true;
+    	} else if (n % 2 == 0) {
+    		return false;
+    	}
+    	for (int i = 3; i <= Math.sqrt(n); i+= 2) {
+    		if (n % i == 0) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
 }
